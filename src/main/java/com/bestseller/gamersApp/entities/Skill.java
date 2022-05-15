@@ -8,6 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity
 @Table
@@ -19,6 +21,7 @@ public class Skill {
 	
 	private String level;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "skill")
 	private List<GamersGame> gamersGame;
 

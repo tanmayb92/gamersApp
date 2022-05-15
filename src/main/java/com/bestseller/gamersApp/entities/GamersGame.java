@@ -7,6 +7,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity
 @Table
@@ -18,6 +20,7 @@ public class GamersGame {
 	
 	private String userName;
 	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="game_id")
 	private Game game;
