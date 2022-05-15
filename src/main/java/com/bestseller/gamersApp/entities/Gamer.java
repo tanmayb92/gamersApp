@@ -12,6 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Past;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -31,6 +32,7 @@ public class Gamer {
 	
 	private String gender;
 	
+	@Past
 	private LocalDate dateOfBirth;
 	
 	private LocalDate creationDate;

@@ -10,6 +10,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 
 @Entity
@@ -22,6 +23,7 @@ public class Game {
 	@GeneratedValue
 	private Long id;
 	
+	@NotNull
 	private String gameName;
 	
 	private String gameGenre;
