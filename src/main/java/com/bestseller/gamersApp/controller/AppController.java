@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -68,14 +69,14 @@ public class AppController {
 	}
 	
 	@PostMapping(path ="/linkGamerToGame")
-	public HttpStatus linkGamerToGame(@RequestBody LinkGamer linkGamer) {
+	public ResponseEntity linkGamerToGame(@RequestBody LinkGamer linkGamer) {
 		GamersGame gamesGame = new GamersGame();
 		gamesGame.setGamer(validationUtil.validateGamer(linkGamer.getGamerID()));
 		gamesGame.setGame(validationUtil.validateGame(linkGamer.getGameID()));
 		gamesGame.setSkill	(validationUtil.validateSkill(linkGamer.getSkillID()));
 		gamesGame.setUserName(linkGamer.getUserName());
 		gamersGameDao.save(gamesGame);
-		return HttpStatus.CREATED;
+		return new ResponseEntity<>(null, HttpStatus.CREATED);
 	}
 
 

@@ -19,3 +19,6 @@ insert into country values (3L,'IN','India','Asia');
 insert into gamer values (1L,'2022-02-02','1992-10-11','logan@gmail.com','Male','logan',1L);
 insert into gamer values (2L,'2022-02-02','1992-10-11','logan123@gmail.com','Male','logan123',1L);
 
+--insert into gamers_game values(1L,'noobmaster',1L,1L,1L);
+--
+--insert into gamers_game values(2L,'noobmaster123',2L,2L,1L);

@@ -9,6 +9,9 @@ public class LinkGamer {
 	public Long skillID;
 	
 	public String userName;
+	
+	public LinkGamer() {
+	}
 
 	public Long getGamerID() {
 		return gamerID;
