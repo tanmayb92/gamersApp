@@ -1,0 +1,113 @@
+<h1>Gamers Dir</h1>
+<br>
+
+<div class="row" style="margin-left: 10%">
+    <div class="col-3">
+        <button type="button" class="btn btn-primary" (click)="openMatchMakingForm()">Find MatchMaking Server</button>
+    </div>
+    <div class="col-3">
+        <button type="button" class="btn btn-primary" (click)="openLinkForm()">Link Gamer to Game</button>
+    </div>
+    <div class="col">
+        <button type="button" class="btn btn-primary" (click)="openSearchSkillsForm() ">Find specific skills per
+            game</button>
+    </div>
+</div>
+<br>
+<br>
+
+<div [hidden]="!showMatchMakingForm" style="width: 50%;margin-left: 12%;">
+    <form>
+        <div [hidden]="!searchGame" style="margin-left: 12%;width: 50%;">
+            <ng-select [items]="games" bindLabel="gameName" placeholder="Select Game " (change)="onGameChange()" appendTo="body"
+                [(ngModel)]="selectedGame">
+            </ng-select>
+        </div>
+        <br>
+        <div class="form-group">
+            <label for="level">select level</label>
+            <select class="form-control" id="level">
+                <option>PRO</option>
+                <option>NOOB</option>
+                <option>INVINCIBLE</option>
+            </select>
+        </div>
+        <br>
+        <div class="form-group">
+            <label for="geo">GeoGraphical Area</label>
+            <select class="form-control" id="geo">
+                <option>Europe</option>
+                <option>Asia</option>
+            </select>
+        </div>
+        <br>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+
+<div [hidden]="!linkForm" style="width: 50%;margin-left: 12%;">
+    <form>
+        <div class="form-group">
+            <label for="gamerId">GamerId</label>
+            <input type="text" class="form-control" id="gamerid">
+        </div>
+        <br>
+        <div class="form-group">
+            <label for="gameName">Game Name</label>
+            <input type="text" class="form-control" id="gamerName">
+        </div>
+        <br>
+        <div class="form-group">
+            <label for="level">select level</label>
+            <select class="form-control" id="level">
+                <option>PRO</option>
+                <option>NOOB</option>
+                <option>INVINCIBLE</option>
+            </select>
+        </div>
+        <br>
+        <div class="form-group">
+            <label for="userName">UserName</label>
+            <input type="text" class="form-control" id="userName">
+        </div>
+        <br>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+
+
+<div [hidden]="!searchSkill" style="margin-left: 12%;width: 50%;">
+    <ng-select [items]="skills" bindLabel="level" placeholder="Select skill" (change)="onSkillChange()" appendTo="body"
+        [(ngModel)]="selectedSkill">
+    </ng-select>
+</div>
+
+
+
+<div class="container mt-5" [hidden] ="!playerBySkillFound">
+
+    <h2>Gamers for specific skills per game </h2>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>GameName</th>
+                <th>UserName</th>
+                <th>Level</th>
+                <th>GamerName</th>
+            </tr>
+        </thead>
+        <tbody>
+            <ng-container *ngFor="let game of resultGame;">
+                <ng-container *ngFor="let gg of game.gamersGame; let $index = index">
+                    <tr>
+                        <td>{{ game.gameName }}</td>
+                        <td>{{ gg.userName }}</td>
+                        <td>{{ gg.skill.level }}</td>
+                        <td>{{ gg.gamer.name }}</td>
+                    </tr>
+                </ng-container>
+            </ng-container>
+        </tbody>
+    </table>
+</div>
