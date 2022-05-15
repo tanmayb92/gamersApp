@@ -6,12 +6,16 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 
 @Entity
 @Table
+@NamedQueries(value = { @NamedQuery(name = "Game.getGamerBySkillForGames",query = "select g from Game g join fetch g.gamersGame gg where gg.skill.id = ?1")
+})
 public class Game {
 	
 	@Id

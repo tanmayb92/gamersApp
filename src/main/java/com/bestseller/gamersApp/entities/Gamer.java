@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -16,6 +17,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table
+@NamedQuery(name = "Gamer.findMatchMaking",query = "select g from Gamer g join fetch g.gamersGame gg where gg.skill.id = ?1 and gg.game.id = ?2 and g.country.id = ?3")
 public class Gamer {
 
 	@Id
