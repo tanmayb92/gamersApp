@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -15,12 +16,12 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Table
-@NamedQueries(value = { @NamedQuery(name = "Game.getGamerBySkillForGames",query = "select g from Game g join fetch g.gamersGame gg where gg.skill.id = ?1")
+@NamedQueries(value = { @NamedQuery(name = "Game.getGamerBySkillForGames",query = "select g from Game g where exists(select 1 from GamersGame gg where gg.game.id = g.id and gg.skill.id = ?1)")
 })
 public class Game {
 	
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
 	@NotNull
